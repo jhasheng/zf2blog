@@ -1,0 +1,258 @@
+<section class="scrollable wrapper">
+	<div class="row">
+		<div class="col-lg-12">
+			<!-- .breadcrumb -->
+			<?php echo $this->navigation('navigation')->breadcrumbs()->setPartial('breadcrumb')->setMinDepth(0)->render(); ?>
+			<!-- / .breadcrumb-->
+		</div>
+
+		<div class="col-sm-8 portlet">
+			<section class="panel panel-default">
+				<header class="panel-heading bg-light">
+					<ul class="nav nav-tabs nav-justified">
+						<li class="active"><a href="#home" data-toggle="tab"><i class="fa fa-bars"></i> General</a></li>
+						<li><a href="#profile" data-toggle="tab"><i class="i i-mail2"></i> Mailing</a></li>
+						<li><a href="#messages" data-toggle="tab"><i class="fa fa-comment"></i> Discussion</a></li>
+						<li><a href="#settings" data-toggle="tab"><i class="fa fa-book"></i> Reading</a></li>
+						<li><a href="#social" data-toggle="tab"><i class="fa fa-users"></i> Social</a></li>
+					</ul>
+				</header>
+				<div class="panel-body">
+					<div class="tab-content">
+						<div class="tab-pane active" id="home">
+							<div class="col-sm-12">
+								<table class="table table-border">
+								    <?php $options_general = $this->options_general;?>
+								    <?php if($options_general):foreach ($options_general as $option):?>
+									<tr>
+										<td width="26%"><?php echo $option->getKeyname();?></td>
+										<td>
+											<a data-name="<?php echo $option->getKeyname()?>"
+											     id="editable<?php echo $option->getId()?>"
+											     data-pk="<?php echo $option->getId()?>" data-url="/admin/setting/update" 
+											     data-original-title="Enter <?php echo $option->getKeyname()?>" editable
+											>
+											     <?php echo $option->getValue();?>
+											</a>
+										</td>
+									</tr>
+									<?php endforeach;endif;?>
+								</table>
+							</div>
+						</div>
+						<div class="tab-pane" id="profile">
+							<div class="col-sm-12">
+								<table class="table table-border">
+								    <?php $options_mailing = $this->options_mailing;?>
+								    <?php if($options_mailing):foreach ($options_mailing as $option):?>
+									<tr>
+										<td width="26%"><?php echo $option->getKeyname();?></td>
+										<td>
+											<a data-name="<?php echo $option->getKeyname()?>"
+											     id="editable<?php echo $option->getId()?>"
+											     data-pk="<?php echo $option->getId()?>" data-url="/admin/setting/update" 
+											     data-original-title="Enter <?php echo $option->getKeyname()?>" editable
+											>
+											     <?php echo $option->getValue();?>
+											</a>
+										</td>
+									</tr>
+									<?php endforeach;endif;?>
+								</table>
+							</div>
+						</div>
+						<div class="tab-pane" id="messages">
+							<div class="col-sm-12">
+								<table class="table table-border">
+								    <?php $options_discussion = $this->options_discussion;?>
+								    <?php if($options_discussion):foreach ($options_discussion as $option):?>
+									<tr>
+										<td width="26%"><?php echo $option->getKeyname();?></td>
+										<td>
+											<a data-name="<?php echo $option->getKeyname()?>"
+											     id="editable<?php echo $option->getId()?>"
+											     data-pk="<?php echo $option->getId()?>" data-url="/admin/setting/update" 
+											     data-original-title="Enter <?php echo $option->getKeyname()?>" editable
+											>
+											     <?php echo $option->getValue();?>
+											</a>
+										</td>
+									</tr>
+									<?php endforeach;endif;?>
+								</table>
+							</div>
+						</div>
+						<div class="tab-pane" id="settings">
+							<div class="col-sm-12">
+								<table class="table table-border">
+								    <?php $options_reading = $this->options_reading;?>
+								    <?php if($options_reading):foreach ($options_reading as $option):?>
+									<tr>
+										<td width="26%"><?php echo $option->getKeyname();?></td>
+										<td>
+											<a data-name="<?php echo $option->getKeyname()?>"
+											     id="editable<?php echo $option->getId()?>"
+											     data-pk="<?php echo $option->getId()?>" data-url="/admin/setting/update" 
+											     data-original-title="Enter <?php echo $option->getKeyname()?>" editable
+											>
+											     <?php echo $option->getValue();?>
+											</a>
+										</td>
+									</tr>
+									<?php endforeach;endif;?>
+								</table>
+							</div>
+						</div>
+						<div class="tab-pane" id="social">
+							<div class="col-sm-12">
+								<form class="form-horizontal" data-validate="parsley">
+									<div class="panel-body">
+										<div class="form-group">
+											<label class="col-sm-3 control-label">QQ <i class="fa fa-qq"></i></label>
+											<div class="col-sm-9">
+												<input type="text" class="form-control"
+													placeholder="required field">
+											</div>
+										</div>
+										<div class="line line-dashed b-b line-lg pull-in"></div>
+										<div class="form-group">
+											<label class="col-sm-3 control-label">Weibo <i
+												class="fa fa-weibo"></i></label>
+											<div class="col-sm-9">
+												<input type="text" class="form-control"
+													placeholder="not blank field">
+											</div>
+										</div>
+										<div class="line line-dashed b-b line-lg pull-in"></div>
+										<div class="form-group">
+											<label class="col-sm-3 control-label">Baidu <i
+												class="fa fa-baidu"></i></label>
+											<div class="col-sm-9">
+												<input type="text" class="form-control"
+													placeholder="minlength = 6">
+											</div>
+										</div>
+
+										<div class="line line-dashed b-b line-lg pull-in"></div>
+										<div class="form-group">
+											<label class="col-sm-3 control-label">Linkin <i
+												class="fa fa-linkedin"></i></label>
+											<div class="col-sm-9">
+												<input type="text" class="form-control"
+													placeholder="minlength = 6">
+											</div>
+										</div>
+										<div class="line line-dashed b-b line-lg pull-in"></div>
+										<div class="form-group">
+											<label class="col-sm-3 control-label">Google <i
+												class="fa fa-google-plus"></i></label>
+											<div class="col-sm-9">
+												<input type="text" class="form-control"
+													placeholder="minlength = 6">
+											</div>
+										</div>
+										<div class="line line-dashed b-b line-lg pull-in"></div>
+										<div class="form-group">
+											<label class="col-sm-3 control-label">Github <i
+												class="fa fa-github"></i></label>
+											<div class="col-sm-9">
+												<input type="text" class="form-control"
+													placeholder="minlength = 6">
+											</div>
+										</div>
+										<div class="line line-dashed b-b line-lg pull-in"></div>
+										<div class="form-group">
+											<label class="col-sm-3 control-label">Facebook <i
+												class="fa fa-facebook"></i></label>
+											<div class="col-sm-9">
+												<input type="text" class="form-control"
+													placeholder="minlength = 6">
+											</div>
+										</div>
+										<div class="line line-dashed b-b line-lg pull-in"></div>
+										<div class="form-group">
+											<label class="col-sm-3 control-label">Twitter <i
+												class="fa fa-twitter"></i></label>
+											<div class="col-sm-9">
+												<input type="text" class="form-control"
+													placeholder="minlength = 6">
+											</div>
+										</div>
+										<div class="line line-dashed b-b line-lg pull-in"></div>
+										<div class="form-group">
+											<label class="col-sm-3 control-label">Microsoft <i
+												class="fa fa-windows"></i></label>
+											<div class="col-sm-9">
+												<input type="text" class="form-control"
+													placeholder="minlength = 6">
+											</div>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+		<div class="col-sm-4 portlet">
+			<section class="panel panel-default">
+				<header class="panel-heading bg-light">
+					<i class="fa fa-plus"></i> Add Option
+				</header>
+				<div class="panel-body">
+					<div class="tab-content">
+						<div class="tab-pane active">
+							<div class="col-sm-12">
+							    <?php
+                                $form = $this->form;
+                                $form->setAttributes(array('action' => 'javascript:;','id' => 'addform'));
+                                ?>
+                                <?php echo $this->form()->openTag($form);?>
+								<div class="panel-body">
+									<?php echo $this->ScalFormElement($form->get('keyname'));?>
+									<div class="line line-dashed b-b line-lg pull-in"></div>
+									<?php echo $this->ScalFormElement($form->get('value'));?>
+									<div class="line line-dashed b-b line-lg pull-in"></div>
+									<?php echo $this->ScalFormElement($form->get('type'));?>
+									<div class="line line-dashed b-b line-lg pull-in"></div>
+									<?php echo $this->ScalFormElement($form->get('comment'));?>
+									<div class="line line-dashed b-b line-lg pull-in"></div>
+									<div class="form-group">
+										<div class="form-group text-right lter">
+											<button type="submit" class="btn btn-success btn-s-xs">Submit</button>
+										</div>
+									</div>
+								</div>
+								<?php echo $this->form()->closeTag();?>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+	</div>
+</section>
+<script type="text/javascript">
+<!--
+var url = "<?php echo $this->url('admin/default',array('controller' => 'setting', 'action' => 'add'));?>";
+$(function(){
+	$(document).on('click','#addform button',function(){
+		$.ajax({
+			url : url,
+			type : 'POST',
+			data : new FormData($('#addform').get(0)),
+			processData : false,
+			contentType : false,
+			success : function(d,s){
+				console.log(d);
+				$('#addform').get(0).reset();
+			},
+			error : function(e){
+				console.log(e);
+			}
+		});
+	});
+});
+//-->
+</script>

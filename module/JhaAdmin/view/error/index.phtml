@@ -1,0 +1,51 @@
+<div class="list-group bg-info auto m-b-sm m-b-lg">
+	<a class="list-group-item"> 
+	   <?php echo $this->message; ?>
+	</a> 
+	<?php if (isset($this->display_exceptions) && $this->display_exceptions): ?>
+	<?php if(isset($this->exception) && $this->exception instanceof Exception): ?>
+	<a class="list-group-item"> 
+	   Exception: <?php echo get_class($this->exception); ?>
+	</a> 
+	<a class="list-group-item"> 
+	   File: <?php echo $this->exception->getFile() ?>:<?php echo $this->exception->getLine() ?>
+	</a> 
+	<a class="list-group-item"> 
+	   Message: <?php echo $this->escapeHtml($this->exception->getMessage()) ?>
+	</a>
+	<div class="list-group-item"> 
+	   <?php echo $this->translate('Stack trace') ?>: 
+	   <pre class="pre-scrollable"><code><?php echo $this->escapeHtml($this->exception->getTraceAsString()) ?></code></pre>
+	</div>
+	<?php $e = $this->exception->getPrevious();?>
+	    <?php if ($e) : ?>
+        <hr />
+        <h2><?php echo $this->translate('Previous exceptions') ?>:</h2>
+        <ul class="unstyled">
+            <?php while($e) : ?>
+            <li>
+        		<h3><?php echo get_class($e); ?></h3>
+        		<dl>
+        			<dt><?php echo $this->translate('File') ?>:</dt>
+        			<dd>
+        				<pre><?php echo $e->getFile() ?>:<?php echo $e->getLine() ?></pre>
+        			</dd>
+        			<dt><?php echo $this->translate('Message') ?>:</dt>
+        			<dd>
+        				<pre><?php echo $this->escapeHtml($e->getMessage()) ?></pre>
+        			</dd>
+        			<dt><?php echo $this->translate('Stack trace') ?>:</dt>
+        			<dd>
+        				<pre><?php echo $this->escapeHtml($e->getTraceAsString()) ?></pre>
+        			</dd>
+        		</dl>
+        	</li>
+            <?php $e = $e->getPrevious(); ?>
+            <?php endwhile; ?>
+        </ul>
+        <?php else: ?>
+            <a><?php echo $this->translate('No Exception available') ?></a>
+        <?php endif; ?>
+	<?php endif; ?>
+	<?php endif; ?>
+</div>

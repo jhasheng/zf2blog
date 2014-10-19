@@ -1,0 +1,14 @@
+{
+  "name" : "ZendBlog",
+  "description" : "Skeleton Application for ZF2",
+  "version" : "1.0",
+  "require" : {
+    "php" : ">=5.3.3",
+    "zendframework/zendframework" : "2.3.*",
+    "zendframework/zend-developer-tools" : "dev-master",
+    "bjyoungblood/bjy-profiler" : "=v1.1.0"
+  },
+  "keywords" : [ "framework", "zf2" ],
+  "license" : "BSD-3-Clause",
+  "homepage" : "http://framework.zend.com/"
+}

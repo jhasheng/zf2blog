@@ -1,0 +1,102 @@
+<!-- blog post container start -->
+<article class="grid_9 blog single">
+	<!-- blog post start -->
+	<article class="blog-post">
+		<!-- meta start -->
+		<ul class="meta">
+			<li class="category design"><a href="#">category</a></li>
+			<li class="date">
+				<p>
+					<?php echo date('d',$this->post->getPublishedtime())?> <br /><?php echo date('M',$this->post->getPublishedtime())?>
+				</p>
+			</li>
+		</ul>
+		<!-- meta end -->
+		<!-- post body start -->
+		<section class="post">
+<!-- 			<figure class="img-styled no-sliding"> -->
+<!-- 				<div class="img-container"> -->
+					<!-- img start -->
+<!-- 					<img src="img/blog/blog1.jpg" alt="blog" /> -->
+					<!-- img end -->
+
+					<!-- img hover effect start -->
+<!-- 					<ul class="img-hover"> -->
+<!-- 						<li class="title"><a href="blogsingle.html">This is single blog -->
+<!-- 								post with image and it has fixed title</a></li> -->
+<!-- 					</ul> -->
+					<!-- img hover effect end -->
+<!-- 				</div> -->
+<!-- 			</figure> -->
+			<?php echo $this->post->getText();?>
+		</section>
+		<!-- post body end -->
+		<!-- post comments start -->
+		<section class="post-comments">
+			<h5>comments (<?php echo $this->comments->count()?>)</h5>
+			<!-- post comments list items start -->
+			<ul class="comments-li">
+                <?php foreach ($this->comments as $comment):?>
+				<li>
+					<section class="comment">
+						<div class="avatar">
+							<img src="img/blog/author1.jpg" width="87" alt="author" />
+						</div>
+
+						<div class="comment-meta">
+							<h5><?php echo $comment->getNickname();?></h5>
+							<?php echo date('F d, Y H:i a',$comment->getPosttime());?> | <a href="#">Reply</a>
+						</div>
+
+						<div class="comment-body">
+							<p><?php echo $comment->getContent();?></p>
+						</div>
+					</section>
+				</li>
+				<?php endforeach;?>
+				<!-- post comments list item end -->
+			</ul>
+			<!-- post comments list items end -->
+		</section>
+		<!-- post comments end -->
+
+		<!-- comment form start -->
+		<section class="comment-form">
+			<h5>post a comment</h5>
+			<form>
+			     <?php $form = $this->form;?>
+			     <?php echo $this->formlabel($form->get('nickname'));?>
+			     <?php echo $this->forminput($form->get('nickname'));?>
+			     <?php echo $this->formlabel($form->get('content'));?>
+			     <?php echo $this->formelement($form->get('content'));?>
+			     <?php echo $this->formsubmit($form->get('submit'));?>
+			</form>
+			<div id="comment-response"></div>
+		</section>
+		<!-- comment form end -->
+	</article>
+	<!-- blog post end -->
+</article>
+<!-- blog post container end -->
+
+<script>
+$(function(){
+	var url = "<?php echo $this->url('blog/default',array('controller'=>'comment','action'=>'add'));?>";
+	var postid = "<?php echo $this->post->getId()?>";
+    $('.comment-form .submit').on('click', function(event){
+        event.preventDefault();
+        var name = $('#comment-name').val();
+        var message = $('#comment-message').val();
+        $.ajax({
+            type: 'POST',
+            url: url,
+            dataType : 'JSON',
+            data: {nickname: name, content: message,postid:postid},
+        }).done(function(data) {
+            $('#comment-response').html(data.name);
+        });
+    });
+});
+</script>
+
+

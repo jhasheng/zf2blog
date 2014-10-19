@@ -1,0 +1,24 @@
+<?php if($this->pageCount):?>
+<!-- pagination start -->
+<li class="pagination">
+	<ul>
+		<!-- arrow right start (reverse order due to float right-->
+		<?php if($this->next):?>
+		<?php $url = $this->url($this->route,array('controller'=>$this->controller,'action'=>$this->action,'page'=>$this->next));?>
+		<li class="arrow"><a href="<?php echo $url;?>">&#187;</a></li>
+		<?php endif;?>
+		<!-- arrow right end -->
+		<?php for ($i = count($this->pagesInRange) ;$i > 0 ;$i-- ):?>
+		<?php $url = $this->url($this->route,array('controller'=>$this->controller,'action'=>$this->action,'page'=>$this->pagesInRange[$i]));?>
+		<li <?php if($this->pagesInRange[$i] == $this->current):?>class="active"<?php endif;?>><a href="<?php echo $url;?>"><?php echo $this->pagesInRange[$i];?></a></li>
+		<?php endfor;?>
+		<!-- arrow left start -->
+		<?php if($this->previous):?>
+		<?php $url = $this->url($this->route,array('controller'=>$this->controller,'action'=>$this->action,'page'=>$this->previous));?>
+		<li class="arrow"><a href="<?php echo $url;?>">&#171;</a></li>
+		<?php endif;?>
+		<!-- arrow left end -->
+	</ul>
+</li>
+<!-- pagination end -->
+<?php endif;?>

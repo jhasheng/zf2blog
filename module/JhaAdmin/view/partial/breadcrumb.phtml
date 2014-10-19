@@ -1,0 +1,11 @@
+<ul class="breadcrumb">
+    <li><a href="<?php //echo $this->url('admin');?>"><i class="fa fa-home"></i> Home</a></li>
+    <?php foreach ($this->pages as $page):?>
+	<li>
+	   <a href="<?php echo $page->getHref();?>">
+	       <i class="<?php echo $page->get('icon');?>"></i>
+	       <?php echo $page->getLabel();?>
+	   </a>
+	</li>
+	<?php endforeach;?>
+</ul>

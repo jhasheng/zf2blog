@@ -1,0 +1,44 @@
+<?php echo $this->doctype(); ?>
+<html lang="en" class="app">
+<head>
+    <?php
+    echo $this->headMeta()->setCharset('UTF-8')->appendName('viewport', 'width=device-width, initial-scale=1, maximum-scale=1');
+         $this->headTitle('Scale | Web Application')->setSeparator(' - ')->setAutoEscape(true);
+    echo $this->headtitle('Zend Framework 2');
+    echo $this->headlink()
+        ->appendStylesheet($this->basepath() . '/css/bootstrap.css')
+        ->appendStylesheet($this->basepath() . '/css/animate.css')
+        ->appendStylesheet($this->basepath() . '/css/font-awesome.min.css')
+        ->appendStylesheet($this->basepath() . '/css/icon.css')
+        ->appendStylesheet($this->basepath() . '/css/font.css')
+        ->appendStylesheet($this->basepath() . '/css/app.css')
+    ;
+    
+    echo $this->headScript()
+        ->appendFile($this->basePath() . '/js/ie/html5shiv.js'  ,   'text/javascript', array('conditional' => 'lt IE 9'))
+        ->appendFile($this->basePath() . '/js/ie/respond.min.js',   'text/javascript', array('conditional' => 'lt IE 9'))
+        ->appendFile($this->basePath() . '/js/ie/excanvas.js'   ,   'text/javascript', array('conditional' => 'lt IE 9'))
+        ->appendFile($this->basePath() . '/sea/sea.js')
+        ->appendFile($this->basePath() . '/sea/config.js')
+    ;
+    ?>
+</head>
+<body>
+    <section id="content" class="m-t-lg wrapper-md animated fadeIn ">
+        <div class="container aside-xl">
+            <?php echo $this->content;?>
+        </div>
+	</section>
+	<!-- footer -->
+	<footer id="footer">
+		<div class="text-center padder">
+			<p><small>Web app framework base on Bootstrap<br>&copy; 2013 </small></p>
+		</div>
+	</footer>
+    <script type="text/javascript">
+        var url = "<?php echo $this->url('auth');?>";
+        var indexUrl = "<?php echo $this->url('admin/post');?>";
+        seajs.use('/sea/pages/login');
+    </script>
+</body>
+</html>

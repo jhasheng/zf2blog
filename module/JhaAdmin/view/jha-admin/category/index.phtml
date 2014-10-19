@@ -1,0 +1,158 @@
+<section class="vbox">
+		<?php echo $this->partial('header'); ?>
+		<section>
+		<section class="hbox stretch">
+			<!-- .aside -->
+			<?php echo $this->navigation('navigation')->menu()->setPartial('navigation')->render();?>
+			<!-- /.aside -->
+			<section id="content">
+				<section class="vbox">
+					<section class="scrollable padder">
+						<div class="m-b-md">
+							<h3 class="m-b-none">Static Table</h3>
+						</div>
+						<section class="panel panel-default">
+							<header class="panel-heading">
+								<a href="#modal-form" class="btn btn-sm btn-success"
+									data-toggle="modal">Add Category</a>
+							</header>
+							<div class="table-responsive">
+								<div class="row">
+									<div class="col-sm-12">
+										<div id="treeview6" class="test"></div>
+									</div>
+								</div>
+							</div>
+						</section>
+					</section>
+				</section>
+				<a href="#" class="hide nav-off-screen-block"
+					data-toggle="class:nav-off-screen" data-target="#nav"></a>
+			</section>
+		</section>
+	</section>
+</section>
+<div class="modal fade" id="modal-form">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body wrapper-lg">
+				<div class="row">
+					<div class="col-sm-12 b-r">
+						<h3 class="m-t-none m-b">Add Category</h3>
+						<?php $form = $this->form;?>
+						<form class="form-horizontal" id="addcategroy">
+						      <?php echo $this->formhidden($form->get('id'));?>
+							<div class="form-group">
+							     <?php echo $this->formlabel($form->get('pid'));?>
+								<div class="col-sm-8">
+								    <?php echo $this->formselect($form->get('pid'));?>
+								</div>
+							</div>
+							<div class="form-group">
+							     <?php echo $this->formlabel($form->get('catname'));?>
+								<div class="col-sm-8">
+								    <?php echo $this->forminput($form->get('catname'));?>
+								</div>
+							</div>
+							<div class="form-group">
+							     <?php echo $this->formlabel($form->get('catalias'));?>
+								<div class="col-sm-8">
+								    <?php echo $this->forminput($form->get('catalias'));?>
+								</div>
+							</div>
+							<div class="checkbox m-t-lg">
+								<div class="col-sm-offset-10 col-sm-2">
+							         <?php echo $this->formelement($form->get('add'))?>
+							    </div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+<script type="text/javascript">
+<!--
+$(function(){
+	$(".chosen-select").chosen({width: "100%"}); 
+	var addCategoryurl = "<?php echo $this->url('admin/default',array('controller'=>'category','action'=>'add'));?>";
+	var editCategoryUrl = "<?php echo $this->url('admin/default',array('controller'=>'category','action'=>'edit'));?>";
+	var disableCategoryurl = "<?php echo $this->url('admin/default',array('controller'=>'category','action'=>'menu'));?>";
+	$('#addcategroy').on('submit', function (event) {
+        event.preventDefault();
+        $.ajax({
+           url          : addCategoryurl,
+           type         : 'POST',
+           contentType  : false,
+           processData  : false,
+           data         : new FormData(this),
+           dataType     : 'JSON',
+           success      : function(data,status){
+//                console.log(data);
+               $('#modal-form').modal('hide');
+           }
+        });
+    });
+    var json = '<?php echo $this->json($this->categories);?>';
+//     console.log(json);
+    $('#treeview6').treeview({
+        color: "#428bca",
+        data: json
+    });
+
+    $(document).on('click','.add',function(){
+    	var catid = $(this).parent().data('id');
+    	$('select[name=pid] option[value='+ catid +']').attr('selected',true);
+    	$("a.chosen-single span").text($('select[name=pid] option[value='+ catid +']').text());
+    	$('#modal-form').modal('show');
+    });
+
+    $(document).on('click','.menu',function(){
+    	var catid = $(this).parent().data('id');
+    	var menuObj = $(this);
+    	$.ajax({
+            url         : disableCategoryurl,
+            type        : 'POST',
+            data        : {id:catid},
+            dataType    : 'JSON',
+            success     : function(data,status){
+                var result = data.data;
+                if(result.status){
+                    if(menuObj.hasClass('btn-danger')){
+                    	menuObj.removeClass('btn-danger').addClass('btn-primary');
+                    	menuObj.children('i').removeClass('i-cross2').addClass('i-checkmark2');
+                    }else if(menuObj.hasClass('btn-primary')){
+                    	menuObj.removeClass('btn-primary').addClass('btn-danger c1');
+                    	menuObj.children('i').removeClass('i-checkmark2').addClass('i-cross2');
+                    }
+                }
+            }
+        });
+    });
+
+    $(document).on('click','.edit',function(){
+        var catid = $(this).parent().data('id');
+        $.ajax({
+            url         : editCategoryUrl,
+            type        : 'POST',
+            data        : {id:catid},
+            dataType    : 'JSON',
+            success     : function(data,status){
+                var result = data.data;
+                if(result.status){
+                    $('input[name=catname]').val(result.data.catname);
+                    $('input[name=catalias]').val(result.data.catalias);
+                    $('input[name=id]').val(result.data.id);
+                    $('select[name=pid] option[value='+ result.data.pid +']').attr('selected',true);
+                    $("a.chosen-single span").text($('select[name=pid] option[value='+ result.data.pid +']').text());
+                }
+            }
+        });
+        $('#modal-form').modal('show');
+    });
+});
+//-->
+</script>

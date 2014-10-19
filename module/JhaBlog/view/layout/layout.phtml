@@ -1,0 +1,115 @@
+<?php echo $this->doctype(); ?>
+<head>
+<meta charset="utf-8" />
+<?php
+echo $this->headTitle('Scale | Web Application')
+    ->setSeparator(' - ')
+    ->setAutoEscape(false);
+echo $this->headMeta()->appendName('viewport', 'width=device-width, initial-scale=1, maximum-scale=1');
+?>
+
+<!-- favicon -->
+<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+<link rel="icon" type="image/x-icon" href="favicon.ico" />
+<?php
+echo $this->headlink()
+    ->appendStylesheet($this->basepath() . '/frontend/css/960_12_col.css')
+    ->appendStylesheet($this->basepath() . '/frontend/css/reset.css')
+    ->appendStylesheet($this->basepath() . '/frontend/css/style.css')
+    ->appendStylesheet($this->basepath() . '/frontend/css/prettyPhoto.css')
+    ->appendStylesheet($this->basepath() . '/frontend/css/default-blue.css');
+?>
+<!-- Stylesheets -->
+<!--default blue color style-->
+<link rel="stylesheet" href="/frontend/style-switcher/styleSwitcher.css"
+	media="screen" />
+
+<!--[if IE 7]>
+    <link rel="stylesheet" href="css/ie7.css" media="screen" />
+    <![endif]-->
+<!--[if IE 8]>
+    <link rel="stylesheet" href="css/ie8.css" media="screen" />
+    <![endif]-->
+<!--[if IE 9]>
+    <link rel="stylesheet" href="css/ie9.css" media="screen" />
+    <![endif]-->
+
+<!--[if lt IE 9]>
+        <script src="js/html5shiv.js"></script>
+    <![endif]-->
+
+<!-- google web fonts -->
+<link href='/frontend/fonts/font.css' rel='stylesheet' type='text/css' />
+
+<!-- js files -->
+<script src="/frontend/js/jquery-1.7.2.js"></script>
+<!-- jQuery 1.7.2 -->
+<script src="/frontend/js/portfolio.js"></script>
+<!-- portfolio custom options -->
+<script src="/frontend/js/jquery.prettyPhoto.js"></script>
+<!-- prettyPhoto lightbox -->
+<script src="/frontend/js/jquery.tweetscroll.js"></script>
+<!-- jQuery tweetscroll plugin -->
+<!-- <script src="/frontend/js/socialstream.jquery.js"></script> -->
+<!-- Social Networks Feeds -->
+<script src="/frontend/js/jquery.placeholder.min.js"></script>
+<!-- jQuery Placeholder plugin -->
+<!-- <script src="/frontend/js/include.js"></script> -->
+<!-- jQuery custom options -->
+<script src="/frontend/style-switcher/styleSwitcher.js"></script>
+<!-- Style Switcher plugin -->
+
+</head>
+
+<body>
+	<!-- header wrapper start -->
+	<section id="header-wrapper">
+		<!-- header start -->
+		<header id="header" class="clearfix">
+			<!-- logo start -->
+			<section id="logo">
+				<a href="index.html"> logo </a>
+			</section>
+			<!-- logo end -->
+
+			<!-- social icons start -->
+			<ul class="social">
+				<li class="dribble"><a href="#">dribble</a></li>
+
+				<li class="facebook"><a href="#">facebook</a></li>
+
+				<li class="pinterest"><a href="#">pinterest</a></li>
+
+				<li class="twitter"><a href="#">twitter</a></li>
+			</ul>
+			<!-- social icons end -->
+			<?php echo $this->partial('menu',array('menu'=>$this->menu));?>
+		</header>
+		<!-- header end -->
+
+		<!-- page-title start -->
+		<section id="page-title">
+			<h1>Read Us</h1>
+		</section>
+		<!-- page-title end -->
+
+	</section>
+	<!-- header wrapper end -->
+
+	<!-- content wrapper start -->
+	<section id="content-wrapper">
+
+		<!-- container_12 start -->
+		<section class="container_12">
+            <?php echo $this->content;?>
+			<?php echo $this->partial('slide');?>
+		</section>
+		<!-- container_12 end -->
+
+	</section>
+	<!-- content-wrapper end -->
+
+	<?php echo $this->partial('footer')?>
+
+</body>
+</html>

@@ -1,0 +1,113 @@
+
+<section class="scrollable wrapper">
+	<div class="row">
+		<div class="col-lg-12">
+			<!-- .breadcrumb -->
+			<?php echo $this->navigation('navigation')->breadcrumbs()->setPartial('breadcrumb')->setMinDepth(0)->render(); ?>
+			<!-- / .breadcrumb -->
+		</div>
+		<div class="col-sm-12">
+			<section class="panel panel-default">
+				<header class="panel-heading"> Responsive Table </header>
+				<div class="row wrapper">
+					<div class="col-sm-5 m-b-xs">
+						<select class="input-sm form-control input-s-sm inline v-middle">
+							<option value="0">Bulk action</option>
+							<option value="1">Delete selected</option>
+							<option value="2">Bulk edit</option>
+							<option value="3">Export</option>
+						</select>
+						<button class="btn btn-sm btn-default">Apply</button>
+					</div>
+					<div class="col-sm-4 m-b-xs">
+						<div class="btn-group" data-toggle="buttons"></div>
+					</div>
+					<div class="col-sm-3">
+						<div class="input-group">
+							<input type="text" class="input-sm form-control"
+								placeholder="Search"> <span class="input-group-btn">
+								<button class="btn btn-sm btn-default" type="button">Go!</button>
+							</span>
+						</div>
+					</div>
+				</div>
+				<div class="table-responsive">
+					<table class="table table-striped b-t b-light">
+						<thead>
+							<tr>
+								<th width="20"><label class="checkbox m-n i-checks"> <input
+										type="checkbox"><i></i>
+								</label></th>
+								<th class="th-sortable" data-toggle="class">Post Title <span
+									class="th-sort"> <i class="fa fa-sort-down text"></i> <i
+										class="fa fa-sort-up text-active"></i> <i class="fa fa-sort"></i>
+								</span>
+								</th>
+								<th>Comment</th>
+								<th>Comment Date</th>
+								<th>Publish</th>
+							</tr>
+						</thead>
+						<tbody>
+									    <?php foreach ($this->comments as $comment) : ?>
+										<tr>
+								<td><label class="checkbox m-n i-checks"><input type="checkbox"
+										name="post[]" value="<?php echo $comment->getId(); ?>"><i></i></label></td>
+								<td><?php echo $comment->getTitle(); ?></td>
+								<td><?php echo $comment->getContent(); ?></td>
+								<td><?php echo date('Y-m-d H:i',$comment->getPosttime()); ?></td>
+											<?php if($comment->getPublish() == 1):?>
+											<td><a href="javascript:;" class="btn btn-xs btn-success">Yes</a></td>
+											<?php else:?>
+											<td><a href="javascript:;" class="btn btn-xs btn-danger">No</a></td>
+											<?php endif;?>
+										</tr>
+										<?php endforeach; ?>
+									</tbody>
+					</table>
+				</div>
+				<footer class="panel-footer">
+					<div class="row">
+						<div class="col-sm-4 hidden-xs">
+							<select class="input-sm form-control input-s-sm inline v-middle">
+								<option value="1">Delete selected</option>
+								<option value="2">Display</option>
+								<option value="3">Export</option>
+							</select>
+							<button class="btn btn-sm btn-default">Apply</button>
+						</div>
+					</div>
+				</footer>
+			</section>
+		</div>
+	</div>
+</section>
+<!-- Bootstrap -->
+<script type="text/javascript">
+<!--
+var url = '<?php echo $this->url('admin/default',array('controller'=>'comment','action'=>'show'));?>';
+$(function(){
+	$('table tr:gt(0)').each(function(){
+		$tr = $(this);
+		var comid = $tr.children().find('input').val();
+		var $bnt = $tr.find('td:last a');
+		$bnt.bind('click',function(){
+			var status = $(this).text().toLowerCase();
+			var s = (status == 'yes') ? 0 : 1;
+			change(comid,s);
+			if(status == 'yes'){
+				$(this).removeClass('btn-success').addClass('btn-danger').text('No');
+			}else{
+				$(this).removeClass('btn-danger').addClass('btn-success').text('Yes');
+			}
+		});
+	});
+});
+
+function change(id,status){
+	$.post(url,{id:id,status:status},function(data,status){
+// 		alert(data);
+	});
+}
+//-->
+</script>

@@ -1,0 +1,20 @@
+<?php $form = $this->form;?>
+<a class="navbar-brand block" href="index.html">Scale</a>
+<section class="m-b-lg">
+	<header class="wrapper text-center">
+		<strong>Sign in to get in touch</strong>
+	</header>
+	<?php $form->setAttribute('action','javascript:;')?>
+	<?php echo $this->form()->openTag($form); ?>
+	<div class="list-group">
+		<div class="list-group-item"><?php echo $this->formRow($form->get('username')); ?></div>
+		<div class="list-group-item"><?php echo $this->formRow($form->get('password')); ?></div>
+	</div>
+	<?php echo $this->formSubmit($form->get('login')); ?>
+	
+	<div class="text-center m-t m-b"><a href="#"><small>Forgot password?</small></a></div>
+	<div class="line line-dashed"></div>
+	<p class="text-muted text-center"><small>Do not have an account?</small></p>
+	<a href="signup.html" class="btn btn-lg btn-default btn-block">Create an account</a>
+	<?php echo $this->form()->closeTag(); ?>
+</section>

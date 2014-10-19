@@ -1,0 +1,32 @@
+<!-- blog posts container start -->
+<ul class="grid_9 blog">
+    <?php foreach ($this->posts as $post):?>
+	<!-- blog post start -->
+	<li class="blog-post">
+		<!-- meta start -->
+		<ul class="meta">
+			<li class="category photo"><a href="#">category</a></li>
+			<li class="date"><p> 22 <br />MAY </p>
+			</li>
+		</ul>
+		<!-- meta end --> 
+		<!-- post body start -->
+		<section class="post">
+			<p><?php echo $post->getDescription();?></p>
+
+			<a href="<?php echo $this->url('blog/show',array('controller' => 'blog','action'=>'show','id'=>$post->getId()));?>" class="btn-medium style-color"> 
+			 <span>Read more</span>
+		    </a>
+		</section>
+		<!-- post body end -->
+	</li>
+	<!-- blog post end -->
+	<?php endforeach;?>
+	
+	<!-- ruler start -->
+	<li class="ruler"></li>
+	<!-- ruler end -->
+
+	<?php echo $this->paginationcontrol($this->posts,'Sliding','frontend/pagination',array('route'=>'blog/paginator','controller'=>'blog','action'=>'list'));?>
+</ul>
+<!-- blog posts container end -->

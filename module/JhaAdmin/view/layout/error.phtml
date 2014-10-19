@@ -1,0 +1,66 @@
+<?php echo $this->doctype(); ?>
+<html lang="en" class="bg-dark">
+<head>
+<?php
+echo $this->headMeta()
+    ->setCharset('UTF-8')
+    ->appendName('viewport', 'width=device-width, initial-scale=1, maximum-scale=1')."\n";
+$this->headTitle('Scale | Web Application')
+    ->setSeparator(' - ')
+    ->setAutoEscape(true);
+echo $this->headtitle('Zend Framework 2')."\n";
+echo $this->headlink()
+    ->appendStylesheet($this->basepath() . '/css/bootstrap.css')
+    ->appendStylesheet($this->basepath() . '/css/animate.css')
+    ->appendStylesheet($this->basepath() . '/css/font-awesome.min.css')
+    ->appendStylesheet($this->basepath() . '/css/icon.css')
+    ->appendStylesheet($this->basepath() . '/css/font.css')
+    ->appendStylesheet($this->basepath() . '/css/app.css')."\n";
+
+echo $this->headScript()
+    ->appendFile($this->basePath() . '/js/ie/html5shiv.js'  , 'text/javascript', array( 'conditional' => 'lt IE 9' ))
+    ->appendFile($this->basePath() . '/js/ie/respond.min.js', 'text/javascript', array( 'conditional' => 'lt IE 9' ))
+    ->appendFile($this->basePath() . '/js/ie/excanvas.js'   , 'text/javascript', array( 'conditional' => 'lt IE 9' ))
+    ->appendFile($this->basePath() . '/sea/sea.js')
+    ->appendFile($this->basePath() . '/sea/config.js')
+."\n";
+?>
+</head>
+<body>
+    <section id="content">
+        <div class="row m-n">
+            <div class="col-sm-8 col-sm-offset-2">
+                <div class="text-center m-b-lg">
+                    <h1 class="h text-white animated fadeInDownBig"><?php echo $this->statusCode?></h1>
+                </div>
+				<?php echo $this->content;?>
+				<!--div class="list-group bg-info auto m-b-sm m-b-lg">
+					<a href="index.html" class="list-group-item"> 
+					   <i class="fa fa-chevron-right icon-muted"></i> 
+					   <i class="fa fa-fw fa-home icon-muted"></i> Goto homepage 
+					</a> 
+					<a href="#" class="list-group-item"> 
+					   <i class="fa fa-chevron-right icon-muted"></i> 
+					   <i class="fa fa-fw fa-question icon-muted"></i> Send us a tip 
+					</a> 
+					<a href="#" class="list-group-item"> 
+					   <i class="fa fa-chevron-right icon-muted"></i> 
+					   <span class="badge bg-info lt">021-215-584</span> 
+					   <i class="fa fa-fw fa-phone icon-muted"></i> Call us 
+					   </a>
+				</div-->
+			</div>
+		</div>
+	</section>
+	<!-- footer -->
+	<footer id="footer">
+		<div class="text-center padder clearfix">
+			<p>
+				<small>Web app framework base on Bootstrap<br>&copy; 2013
+				</small>
+			</p>
+		</div>
+	</footer>
+	<!-- / footer -->
+</body>
+</html>

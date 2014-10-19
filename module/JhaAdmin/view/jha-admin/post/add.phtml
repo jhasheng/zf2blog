@@ -1,0 +1,115 @@
+<?php
+$form = $this->form;
+$params = array(
+    "controller" => "post",
+    "action" => $this->action,
+    "id" => $this->id
+);
+// $form->setAttribute('action', $this->url("admin/default", $params));
+?>
+<section class="scrollable wrapper w-f">
+	<div class="row">
+		<div class="col-lg-12">
+			<!-- .breadcrumb -->
+			<?php //echo $this->navigation('navigation')->breadcrumbs()->setPartial('breadcrumb')->setMinDepth(0)->render(); ?>
+			<!-- / .breadcrumb-->
+		</div>
+
+		<div class="col-sm-9 portlet">
+			<section class="panel panel-default portlet-item">
+				<header class="panel-heading font-bold"> Article Add </header>
+				<div class="panel-body">
+			        <?php echo $this->form()->openTag($form);?>
+					<?php //echo $this->formelement($form->get('id'));?>
+					<?php //echo $this->formelement($form->get('author'));?>
+					<?php $spanContent = "A block of help text that breaks onto a new line and may extend beyond one line."?>
+					<?php echo $this->ScalFormElement($form->get('title'),$spanContent);?>
+					<div class="line line-dashed b-b line-lg pull-in"></div>
+					<?php echo $this->ScalFormElement($form->get('keywords'));?>
+					<div class="line line-dashed b-b line-lg pull-in"></div>
+					<?php echo $this->ScalFormElement($form->get('description'));?>
+					<div class="line line-dashed b-b line-lg pull-in"></div>
+					<?php echo $this->ScalFormElement($form->get('text'));?>
+					<div class="line line-dashed b-b line-lg pull-in"></div>
+					<div class="form-group">
+						<div class="col-sm-4 col-sm-offset-2">
+							<?php echo $this->formelement($form->get('save'));?>
+							<button type="submit" class="btn btn-default">Cancel</button>
+						</div>
+					</div>
+        			<?php echo $this->form()->closeTag();?>
+        		</div>
+			</section>
+		</div>
+		<div class="col-sm-3 portlet">
+			<section class="panel panel-default portlet-item">
+				<header class="panel-heading font-bold">
+					Publish
+					<ul class="nav nav-pills pull-right">
+						<li><a href="#" class="panel-toggle text-muted"><i
+								class="fa fa-caret-down text-active"></i><i
+								class="fa fa-caret-up text"></i></a></li>
+					</ul>
+				</header>
+				<div class="panel-body">
+					<form class="form-horizontal">
+						<div class="form-group">
+							<label class="col-sm-5 control-label">Visibility : </label>
+							<div class="col-sm-7">
+								<label class="switch">
+        							<?php echo $this->formcheckbox($form->get('published'));?>											 <span></span>
+								</label>
+							</div>
+						</div>
+						<div class="line line-dashed b-b line-lg pull-in"></div>
+						<button type="submit" class="btn btn-sm btn-default">Submit</button>
+					</form>
+				</div>
+			</section>
+		</div>
+		<div class="col-sm-3 portlet">
+			<section class="panel panel-default portlet-item">
+				<header class="panel-heading font-bold">
+					Category<?php echo $form->get('catid')->getValue();?>
+					<ul class="nav nav-pills pull-right">
+						<li><a href="#" class="panel-toggle text-muted"><i
+								class="fa fa-caret-down text-active"></i><i
+								class="fa fa-caret-up text"></i></a></li>
+					</ul>
+				</header>
+				<div class="panel-body">
+					<form class="form-horizontal">
+						<div class="form-group">
+        									    <?php echo $this->formlabel($form->get('catid'));?>
+        										<div class="col-sm-7">
+        										      <?php echo $this->formelement($form->get('catid'));?>
+        										</div>
+						</div>
+					</form>
+				</div>
+			</section>
+		</div>
+		<div class="col-sm-3 portlet">
+			<section class="panel panel-default portlet-item">
+				<header class="panel-heading font-bold">
+					Tags
+					<ul class="nav nav-pills pull-right">
+						<li><a href="#" class="panel-toggle text-muted"><i
+								class="fa fa-caret-down text-active"></i><i
+								class="fa fa-caret-up text"></i></a></li>
+					</ul>
+				</header>
+				<div class="panel-body">
+					<form class="form-inline">
+						<div class="form-group">
+							<label class="sr-only" for="exampleInputPassword2">Password</label>
+							<input type="password" class="form-control input-sm"
+								id="exampleInputPassword2" placeholder="Password">
+						</div>
+						<button type="submit" class="btn btn-default btn-sm">Add Tags</button>
+					</form>
+				</div>
+			</section>
+		</div>
+	</div>
+</section>

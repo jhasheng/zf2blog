@@ -1,0 +1,37 @@
+<!-- main navigation container start -->
+<section id="nav-container">
+
+	<!-- main navigation start  -->
+	<nav id="nav">
+		<ul>
+			<li><a href="<?php echo $this->url('blog');?>">Home</a></li>
+			<li><a href="<?php echo $this->url('blog/default',array('controller'=>'blog','action'=>'list'));?>">Category</a>
+			     <ul>
+        			<?php foreach ($this->menu as $menu):?>
+        			<li><a href="<?php echo $this->url('blog/default',array('controller'=>'blog','action'=>'list','catid'=>$menu['id']));?>"><?php echo $menu['catname']?></a>
+        			     <?php if($menu['options']):?>
+        				<ul>
+        				    <?php foreach ($menu['options'] as $_menu):?>
+        					<li><a href="<?php echo $this->url('blog/default',array('controller'=>'blog','action'=>'list','catid'=>$_menu['id']));?>"><?php echo $_menu['catname']?></a></li>
+        					<?php endforeach;?>
+        				</ul>
+        				<?php endif;?>
+        			</li>
+        			<?php endforeach;?>
+    			</ul>
+			</li>
+		</ul>
+	</nav>
+	<!-- main navigation end -->
+
+
+	<!-- search start -->
+	<section id="search">
+		<form action="#" method="get" >
+		<input id="search-bkg" type="text" placeholder="Search..." /> <input
+			id="search-submit" type="submit" />
+		</form>
+	</section>
+	<!-- search end -->
+</section>
+<!-- main navigation containerend -->
