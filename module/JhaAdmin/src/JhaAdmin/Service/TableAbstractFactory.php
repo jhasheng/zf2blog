@@ -21,11 +21,10 @@ class TableAbstractFactory implements AbstractFactoryInterface
 
     public function createServiceWithName(ServiceLocatorInterface $serviceLocator, $name, $requestedName)
     {
-        if($this->checkRequestedName($requestedName)){
-            $requestedName = $this->mapperName;
-            $mapper = new $requestedName($serviceLocator->get('Zend\Db\Adapter\Adapter'), $this->tableName);
+        $requestedName = $this->mapperName;
+        if(class_exists($requestedName)){
+            return new $requestedName($serviceLocator->get('Zend\Db\Adapter\Adapter'), $this->tableName);
         }
-        return $mapper;
     }
     
     public function checkRequestedName($requestedName)

@@ -26,19 +26,12 @@ return array(
                         'route' => 'admin/post/select',
                         'action' => 'add',
                     ),
-//                     array(
-//                         'label' => 'Trash',
-//                         'route' => 'admin/post/operation',
-//                         'action' => 'trash'
-//                     )
                 )
             ),
             array(
                 'label' => 'Comments',
                 // 正确的路由匹配后自动active
-                'route' => 'admin',
-                'controller' => 'comment',
-                'action' => 'index',
+                'route' => 'admin/comment',
                 'icon' => 'fa fa-comment',
                 'class' => 'auto',
                 'pages' => array(
@@ -62,27 +55,23 @@ return array(
             array(
                 'label' => 'User',
                 // 正确的路由匹配后自动active
-                'route' => 'admin',
-                'controller' => 'user',
+                'route' => 'admin/user',
                 'icon' => 'fa fa-user-md',
                 'class' => 'auto',
                 'pages' => array(
                     array(
-                        'label' => 'User',
-                        'route' => 'admin',
-                        'controller' => 'user',
+                        'label' => 'List',
+                        'route' => 'admin/user/operation',
                         'action' => 'index'
                     ),
                     array(
                         'label' => 'Groups',
-                        'route' => 'admin',
-                        'controller' => 'user',
+                        'route' => 'admin/user/operation',
                         'action' => 'group'
                     ),
                     array(
-                        'label' => 'Permissioin',
-                        'route' => 'admin',
-                        'controller' => 'user',
+                        'label' => 'Permission',
+                        'route' => 'admin/user/operation',
                         'action' => 'permission'
                     )
                 )
@@ -90,8 +79,7 @@ return array(
             array(
                 'label' => 'Settings',
                 // 正确的路由匹配后自动active
-                'route' => 'admin',
-                'controller' => 'setting',
+                'route' => 'admin/setting/select',
                 'action' => 'index',
                 'icon' => 'i i-settings',
                 'class' => 'auto'

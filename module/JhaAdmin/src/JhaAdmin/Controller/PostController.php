@@ -4,6 +4,8 @@ namespace JhaAdmin\Controller;
 use JhaAdmin\Entity\PostEntity;
 use Zend\View\Model\ViewModel;
 use JhaCore\Controller\JhaController;
+use Zend\View\Model\JsonModel;
+use JhaAdmin\InputFilter\PostInputFilter;
 
 class PostController extends JhaController
 {
@@ -11,10 +13,8 @@ class PostController extends JhaController
     {
         $postsMapper = $this->getTable('post');
         
-//         $postsMapper->appendStylesheet('appendStylesheet');
-        $postsMapper->getFieldByAb('appendStylesheet');
         $posts = $postsMapper->fetchAll();
-        $posts->setDefaultItemCountPerPage(5);
+        $posts->setDefaultItemCountPerPage(8);
         $posts->setCurrentPageNumber($this->params('page',1));
         return array(
             'posts' => $posts
@@ -33,31 +33,35 @@ class PostController extends JhaController
                 $postEntity->setCreatedtime(time());
                 $postEntity->setAuthor($this->identity());
                 $postEntity->getPublished() ? $postEntity->setPublishedtime(time()) : $postEntity->setPublishedtime(0);
-                $this->getPostMapper()->savePost($postEntity);
+                var_dump($this->getPostMapper()->save($postEntity));
                 $this->redirect()->toRoute('admin/post/index');
+            }else{
+                return new JsonModel(array('data' => '', 'info' => $form->getMessages(), 'status' => 0));
             }
+        }else{
+            return array(
+                'form' => $form,
+                'action' => 'add'
+            );
         }
-        return array(
-            'form' => $form,
-            'action' => 'add'
-        );
     }
 
     public function editAction()
     {
         $id = $this->params('id');
         $request = $this->getRequest();
-        $postEntity = $this->getPostMapper()->getPost($id);
+        $postEntity = $this->getPostMapper()->find($id);
         $postForm = $this->getServiceLocator()->get('JhaAdmin\Form\PostForm');
-        $postForm->bind($postEntity);
+        $postForm->bind($postEntity)->setInputFilter(new PostInputFilter());
+        
         if ($request->isPost()) {
-            $postForm->setData($request->getPost());
+            $postForm->setData($request->getPost()); 
             if ($postForm->isValid()) {
-                $postEntity->setUpdatedtime(time());
-                $postEntity->getPublished() ? $postEntity->setPublishedtime(time()) : $postEntity->setPublishedtime(0);
-                $result = $this->getPostMapper()->savePost($postEntity);
-                $this->redirect()->toRoute('admin/post/index');
+                $this->getPostMapper()->save($postEntity);
+            }else {
+                return new JsonModel(array('data' => '', 'info' => $postForm->getMessages(), 'status' => 0));
             }
+                
         }
         $viewModel = new ViewModel();
         $viewModel->setTemplate('jha-admin/post/add');
@@ -118,7 +122,7 @@ class PostController extends JhaController
 
     public function getPostMapper()
     {
-        return $this->getServiceLocator()->get('JhaAdmin\Mapper\TBGPost');
+        return $this->getServiceLocator()->get('table:post');
     }
     
 }

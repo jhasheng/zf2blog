@@ -1,17 +1,11 @@
 <?php
 $form = $this->form;
-$params = array(
-    "controller" => "post",
-    "action" => $this->action,
-    "id" => $this->id
-);
-// $form->setAttribute('action', $this->url("admin/default", $params));
 ?>
 <section class="scrollable wrapper w-f">
 	<div class="row">
 		<div class="col-lg-12">
 			<!-- .breadcrumb -->
-			<?php //echo $this->navigation('navigation')->breadcrumbs()->setPartial('breadcrumb')->setMinDepth(0)->render(); ?>
+			<?php echo $this->navigation('navigation')->breadcrumbs()->setPartial('breadcrumb')->setMinDepth(0)->render(); ?>
 			<!-- / .breadcrumb-->
 		</div>
 
@@ -19,25 +13,25 @@ $params = array(
 			<section class="panel panel-default portlet-item">
 				<header class="panel-heading font-bold"> Article Add </header>
 				<div class="panel-body">
-			        <?php echo $this->form()->openTag($form);?>
-					<?php //echo $this->formelement($form->get('id'));?>
-					<?php //echo $this->formelement($form->get('author'));?>
-					<?php $spanContent = "A block of help text that breaks onto a new line and may extend beyond one line."?>
-					<?php echo $this->ScalFormElement($form->get('title'),$spanContent);?>
-					<div class="line line-dashed b-b line-lg pull-in"></div>
-					<?php echo $this->ScalFormElement($form->get('keywords'));?>
-					<div class="line line-dashed b-b line-lg pull-in"></div>
-					<?php echo $this->ScalFormElement($form->get('description'));?>
-					<div class="line line-dashed b-b line-lg pull-in"></div>
-					<?php echo $this->ScalFormElement($form->get('text'));?>
-					<div class="line line-dashed b-b line-lg pull-in"></div>
-					<div class="form-group">
-						<div class="col-sm-4 col-sm-offset-2">
-							<?php echo $this->formelement($form->get('save'));?>
-							<button type="submit" class="btn btn-default">Cancel</button>
-						</div>
-					</div>
-        			<?php echo $this->form()->closeTag();?>
+			        <form class="form-horizontal" data-parsley-validate>
+    					<?php //echo $this->formelement($form->get('id'));?>
+    					<?php //echo $this->formelement($form->get('author'));?>
+    					<?php $spanContent = "A block of help text that breaks onto a new line and may extend beyond one line."?>
+    					<?php echo $this->ScalFormElement($form->get('title'),$spanContent);?>
+    					<div class="line line-dashed b-b line-lg pull-in"></div>
+    					<?php echo $this->ScalFormElement($form->get('keywords'));?>
+    					<div class="line line-dashed b-b line-lg pull-in"></div>
+    					<?php echo $this->ScalFormElement($form->get('description'));?>
+    					<div class="line line-dashed b-b line-lg pull-in"></div>
+    					<?php echo $this->ScalFormElement($form->get('text'));?>
+    					<div class="line line-dashed b-b line-lg pull-in"></div>
+    					<div class="form-group">
+    						<div class="col-sm-4 col-sm-offset-2">
+    							<?php echo $this->formelement($form->get('save'));?>
+    							<button type="submit" class="btn btn-default">Cancel</button>
+    						</div>
+    					</div>
+        			</form>
         		</div>
 			</section>
 		</div>
@@ -80,10 +74,10 @@ $params = array(
 				<div class="panel-body">
 					<form class="form-horizontal">
 						<div class="form-group">
-        									    <?php echo $this->formlabel($form->get('catid'));?>
-        										<div class="col-sm-7">
-        										      <?php echo $this->formelement($form->get('catid'));?>
-        										</div>
+						    <?php echo $this->formlabel($form->get('catid'));?>
+							<div class="col-sm-7">
+							      <?php echo $this->formelement($form->get('catid'));?>
+							</div>
 						</div>
 					</form>
 				</div>
@@ -113,3 +107,4 @@ $params = array(
 		</div>
 	</div>
 </section>
+<?php $this->inlinescript()->appendScript('/sea/pages/post/modify')->toSeaJs();?>

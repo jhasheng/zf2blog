@@ -27,13 +27,77 @@ return array(
                             'select' => array(
                                 'type' => 'Segment',
                                 'options' => array(
+                                    'route' => '/:action[/:page]',
+                                    'constraints' => array(
+                                        'action' => '(index|add)',
+                                        'page' => '[1-9][0-9]*',
+                                    )
+                                ),
+                                'may_terminate' => true,
+                            ),
+
+                            'operation' => array(
+                                'type' => 'Segment',
+                                'options' => array(
+                                    'route' => '/:action[/:id]',
+                                    'constraints' => array(
+                                        'action' => '(edit|delete|undo|trash)',
+                                        'id' => '[1-9][0-9]*'
+                                    ),
+                                )
+                            )
+                        )
+                    ),
+                    'comment' => array(
+                        'type' => 'Literal',
+                        'options' => array(
+                            'route' => '/comment',
+                            'defaults' => array(
+                                'controller' => 'Comment',
+                            ),
+                        ),
+                        'may_terminate' => true
+                    ),
+                    'user' => array(
+                        'type' => 'Literal',
+                        'options' => array(
+                            'route' => '/user',
+                            'defaults' => array(
+                                'controller' => 'User',
+                            ),
+                        ),
+                        'may_terminate' => true,
+                        'child_routes' => array(
+                            'operation' => array(
+                                'type' => 'Segment',
+                                'options' => array(
+                                    'route' => '/:action',
+                                    'constraints' => array(
+                                        'action' => '(index|group|permission)',
+                                    ),
+                                )
+                            )
+                        )
+                    ),
+                    'setting' => array(
+                        'type' => 'Literal',
+                        'options' => array(
+                            'route' => '/setting',
+                            'defaults' => array(
+                                'controller' => 'Setting',
+                            )
+                        ),
+                        'may_terminate' => true,
+                        'child_routes' => array(
+                            'select' => array(
+                                'type' => 'Segment',
+                                'options' => array(
                                     'route' => '/:action',
                                     'constraints' => array(
                                         'action' => '(index|add)'
                                     )
                                 )
                             ),
-
                             'operation' => array(
                                 'type' => 'Segment',
                                 'options' => array(

@@ -31,6 +31,9 @@ var seaConfig = {
 		"calendar_demo"					:	"formelement/calendar/demo.js",
 		"chosen"						:	"formelement/chosen/chosen.jquery.min.js",
 		
+		'parsley'						:	"parsley/parsley.min.js",
+		'validator'						:	"jquery.validator.js",
+		
 		"sortable"						:	"sortable/jquery.sortable.js",
 		
 		"init"							:	"app.plugin.js",

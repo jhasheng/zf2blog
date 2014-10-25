@@ -14,10 +14,7 @@ class SettingController extends AbstractActionController
         $optionsMapper = $this->getOptinosMapper();
         $options_general = $optionsMapper->getOptionsByType(0);
         $options_mailing = $optionsMapper->getOptionsByType(1);
-//         foreach ($options_mailing as $option){
-//             var_dump($option);
-//         }
-//         exit;
+
         $options_discussion = $optionsMapper->getOptionsByType(2);
         $options_reading = $optionsMapper->getOptionsByType(3);
         $options_social = $optionsMapper->getOptionsByType(4);
@@ -87,6 +84,6 @@ class SettingController extends AbstractActionController
 
     public function getOptinosMapper()
     {
-        return $this->getServiceLocator()->get('JhaAdmin\Mapper\Options');
+        return $this->getServiceLocator()->get('table:Options');
     }
 }

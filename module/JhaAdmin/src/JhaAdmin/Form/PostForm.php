@@ -35,7 +35,8 @@ class PostForm extends Form implements ServiceManagerAwareInterface
                 )
             ),
             'attributes' => array(
-                'class' => 'form-control'
+                'class' => 'form-control',
+//                 'required' => true
             )
         ));
         
@@ -50,7 +51,8 @@ class PostForm extends Form implements ServiceManagerAwareInterface
                 'value_options' => $this->getCategories(true)
             ),
             'attributes' => array(
-                'class' => 'chosen-select form-control'
+                'class' => 'chosen-select form-control',
+//                 'required' => true
             )
         ));
         
@@ -64,7 +66,8 @@ class PostForm extends Form implements ServiceManagerAwareInterface
                 )
             ),
             'attributes' => array(
-                'class' => 'form-control'
+                'class' => 'form-control',
+//                 'required' => true
             )
         ));
         
@@ -79,7 +82,8 @@ class PostForm extends Form implements ServiceManagerAwareInterface
             ),
             'attributes' => array(
                 'class' => 'form-control',
-                'rows' => 4
+                'rows' => 4,
+//                 'required' => true
             )
         ));
         
@@ -94,7 +98,8 @@ class PostForm extends Form implements ServiceManagerAwareInterface
             ),
             'attributes' => array(
                 'class' => 'form-control ckeditor',
-                'rows' => 6
+                'rows' => 6,
+//                 'required' => true
             )
         ));
         
@@ -111,7 +116,8 @@ class PostForm extends Form implements ServiceManagerAwareInterface
                 )
             ),
             'attributes' => array(
-                'class' => ''
+                'class' => '',
+                'required' => false
             )
         ));
         
@@ -133,6 +139,6 @@ class PostForm extends Form implements ServiceManagerAwareInterface
 
     public function getCategories($isGroup)
     {
-        return $this->serviceManager->get('JhaAdmin\Mapper\Category')->getCategorySelect();
+        return $this->serviceManager->get('table:category')->getCategorySelect();
     }
 }

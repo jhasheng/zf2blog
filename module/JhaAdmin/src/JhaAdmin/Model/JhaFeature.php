@@ -25,7 +25,7 @@ class JhaFeature extends AbstractFeature
     
     public function preUpdate(Update $update)
     {
-        $this->getSql()->getSqlStringForSqlObject($update);
+        echo $this->getSql()->getSqlStringForSqlObject($update);
     }
     
     public function preDelete(Delete $delete)

@@ -33,18 +33,18 @@ return array(
         )
     ),
     
-    'caches' => array(
-        'redis' => array(
-            'adapter' => array(
-                'name' => 'redis',
-                'lifetime' => 15,
-                'options' => array(
-                    'server' => array(
-                        '10.10.10.68', 6379, 10
-                    )
-                )
-            )
-        )
-    )
+//     'caches' => array(
+//         'redis' => array(
+//             'adapter' => array(
+//                 'name' => 'redis',
+//                 'lifetime' => 15,
+//                 'options' => array(
+//                     'server' => array(
+//                         '10.10.10.68', 6379, 10
+//                     )
+//                 )
+//             )
+//         )
+//     )
     
 );

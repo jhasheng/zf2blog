@@ -91,7 +91,7 @@ class Module implements
             
             'abstract_factories' => array(
                 // 自动调用 Mapper服务，将Zend\Db\Adapter\Adapter自动注入到Mapper中
-//                 'JhaAdmin\Service\MapperAbstractFactory',
+                // 'JhaAdmin\Service\MapperAbstractFactory',
                 
                 'JhaAdmin\Service\TableAbstractFactory',
                 
@@ -111,7 +111,8 @@ class Module implements
             'invokables' => array(
                 'jhaDate' => 'JhaAdmin\View\Helper\JhaDate',
                 'category' => 'JhaAdmin\View\Helper\Category',
-                'scalformelement' => 'JhaAdmin\Form\View\Helper\ScalFormElement'
+                'scalformelement' => 'JhaAdmin\Form\View\Helper\ScalFormElement',
+                'inlinescript' => 'JhaAdmin\View\Helper\Seajs',
             )
         );
     }

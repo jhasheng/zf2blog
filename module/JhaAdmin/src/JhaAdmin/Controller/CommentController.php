@@ -35,6 +35,6 @@ class CommentController extends JhaController
     
     public function getCommentMapper()
     {
-        return $this->getServiceLocator()->get('JhaAdmin\Mapper\Comment');
+        return $this->getServiceLocator()->get('table:comment');
     }
 }
