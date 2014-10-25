@@ -14,6 +14,8 @@
 		errorTemplate : '<span class="help-block m-b-none"></span>',
 		enableCallback : true,
 		errorBreak : true,
+		errorClass : 'has-error',
+		successClass : 'has-success',
 	};
 	/**
 	 * 初始化验证对象
@@ -61,13 +63,21 @@
 		$.ajax(this.options.url, settings);
 	};
 	
-	Validator.prototype.reset = function() {
-		
+	Validator.prototype.reset = function(elementName) {
+		if(elementName){
+			this.$element[elementName].removeClass(this.options.errorClass);
+		}else{
+			for(var ele in this.$element){
+				if(this.$element[ele].hasClass(this.options.errorClass)){
+					this.$element[ele].removeClass(this.options.errorClass);
+				}
+			}
+		}
 	};
 	
 	Validator.prototype.response = function(element, message){
 		var oError = $(this.options.errorTemplate).text(message);
-		element.append(oError).addClass('has-error');
+		element.append(oError).addClass(this.options.errorClass);
 	};
 	
 	Validator.prototype.check = function($element) {
