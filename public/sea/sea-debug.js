@@ -557,9 +557,9 @@
 
 		// Notify waiting modules to fire onload
 		var waitings = mod._waitings;
-		var uri, m;
+		var m;
 
-		for (uri in waitings) {
+		for (var uri in waitings) {
 			if (waitings.hasOwnProperty(uri)) {
 				m = cachedMods[uri];
 				m._remain -= waitings[uri];
