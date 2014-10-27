@@ -32,7 +32,7 @@ var seaConfig = {
 		"chosen"						:	"formelement/chosen/chosen.jquery.min.js",
 		
 		'parsley'						:	"parsley/parsley.min.js",
-		'validator'						:	"jquery.validator.js",
+		'validate'						:	"validator/bootstrap-validator.js",
 		
 		"sortable"						:	"sortable/jquery.sortable.js",
 		

@@ -16,6 +16,10 @@
 		errorBreak : true,
 		errorClass : 'has-error',
 		successClass : 'has-success',
+		notCheckElementNames : 'published',
+		validatorFn : {
+			//fn : function(name, value)
+		}
 	};
 	/**
 	 * 初始化验证对象
@@ -53,9 +57,9 @@
 				if(status == 'success'){
 					if(!data.status && enable){
 						for(var k in data.info){
-							that.response(that.$element[k], data.info[k].isEmpty);
+							if($.inArray(k, that.options.notCheckElementNames.split(',')))
+								that.response(k, data.info[k].isEmpty);
 						}
-//						console.log(data.info);
 					}
 				}
 			}
@@ -75,9 +79,13 @@
 		}
 	};
 	
-	Validator.prototype.response = function(element, message){
-		var oError = $(this.options.errorTemplate).text(message);
-		element.append(oError).addClass(this.options.errorClass);
+	Validator.prototype.response = function(elementName, message){
+		var errorBox = $(this.options.errorTemplate).text(message);
+		if(this.$element[elementName]){
+			this.$element[elementName].append(errorBox).addClass(this.options.errorClass);
+		}else{
+			$('*[name='+ elementName +']').parent().append(oError).addClass(this.options.errorClass);
+		}
 	};
 	
 	Validator.prototype.check = function($element) {
