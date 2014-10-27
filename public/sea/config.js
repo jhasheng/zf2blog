@@ -6,6 +6,7 @@ var seaConfig = {
 	alias 	: {
 		"jquery"						:	"jquery.min.js",
 		"bootstrap"						:	'bootstrap.min.js',
+		
 		"placeholder"					:	"jquery.placeholder.min.js",
 		"modernizr"						:	"jquery.modernizr.min.js",
 		"screenfull"					:	"jquery.screenfull.min.js",
@@ -44,9 +45,10 @@ var seaConfig = {
 	debug		: true,
 	charset 	: "UTF-8",
 	
-	required	: ["jquery","bootstrap","placeholder","modernizr","screenfull","bjax","shift","cookie","slimscroll","editable","remember"],
+	preload		: ["jquery","bootstrap","placeholder","modernizr","screenfull","bjax","shift","cookie","slimscroll","editable","remember"],
+	
 };
 
 seajs.config(seaConfig);
 
-seajs.use(seaConfig.required);
+//seajs.use(seaConfig.required);

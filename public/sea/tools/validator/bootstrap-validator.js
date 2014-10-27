@@ -138,7 +138,7 @@
                     }
                 });
 
-            for (var field in this.options.fields) {
+        	for (var field in this.options.fields) {
                 this._initField(field);
             }
 
@@ -182,7 +182,7 @@
             for (var v in $.fn.bootstrapValidator.validators) {
                 validator    = $.fn.bootstrapValidator.validators[v];
                 attrName     = 'data-bv-' + v.toLowerCase(),
-                enabled      = $field.attr(attrName) + '';
+                enabled      = $field.attr(attrName) + '',
                 html5AttrMap = ('function' === typeof validator.enableByHtml5) ? validator.enableByHtml5($field) : null;
 
                 if ((html5AttrMap && enabled !== 'false') || (html5AttrMap !== true && ('' === enabled || 'true' === enabled || attrName === enabled.toLowerCase()))) {
@@ -326,11 +326,7 @@
 
                 // Prepare the feedback icons
                 // Available from Bootstrap 3.1 (http://getbootstrap.com/css/#forms-control-validation)
-                if (this.options.fields[field].feedbackIcons !== false && this.options.fields[field].feedbackIcons !== 'false'
-                    && this.options.feedbackIcons
-                    && this.options.feedbackIcons.validating && this.options.feedbackIcons.invalid && this.options.feedbackIcons.valid
-                    && (!updateAll || i === total - 1))
-                {
+                if (this.options.fields[field].feedbackIcons !== false && this.options.fields[field].feedbackIcons !== 'false' && this.options.feedbackIcons && this.options.feedbackIcons.validating && this.options.feedbackIcons.invalid && this.options.feedbackIcons.valid && (!updateAll || i === total - 1)) {
                     // $parent.removeClass('has-success').removeClass('has-error').addClass('has-feedback');
                     // Keep error messages which are populated from back-end
                     $parent.addClass('has-feedback');
@@ -463,9 +459,7 @@
          * @returns {String}
          */
         _getMessage: function(field, validatorName) {
-            if (!this.options.fields[field] || !$.fn.bootstrapValidator.validators[validatorName]
-                || !this.options.fields[field].validators || !this.options.fields[field].validators[validatorName])
-            {
+            if (!this.options.fields[field] || !$.fn.bootstrapValidator.validators[validatorName] || !this.options.fields[field].validators || !this.options.fields[field].validators[validatorName]) {
                 return '';
             }
 
@@ -562,9 +556,7 @@
 
                         var length = this.options.excluded.length;
                         for (var i = 0; i < length; i++) {
-                            if (('string' === typeof this.options.excluded[i] && $field.is(this.options.excluded[i]))
-                                || ('function' === typeof this.options.excluded[i] && this.options.excluded[i].call(this, $field, this) === true))
-                            {
+                            if (('string' === typeof this.options.excluded[i] && $field.is(this.options.excluded[i])) || ('function' === typeof this.options.excluded[i] && this.options.excluded[i].call(this, $field, this) === true)) {
                                 return true;
                             }
                         }
@@ -734,9 +726,7 @@
          */
         getFieldElements: function(field) {
             if (!this._cacheFields[field]) {
-                this._cacheFields[field] = (this.options.fields[field] && this.options.fields[field].selector)
-                                         ? $(this.options.fields[field].selector)
-                                         : this.$form.find('[name="' + field + '"]');
+                this._cacheFields[field] = (this.options.fields[field] && this.options.fields[field].selector) ? $(this.options.fields[field].selector) : this.$form.find('[name="' + field + '"]');
             }
 
             return this._cacheFields[field];
@@ -1262,8 +1252,8 @@
          */
         getMessages: function(field, validator) {
             var that     = this;
-                messages = [];
-                $fields  = $([]);
+            var messages = [];
+            var $fields  = $([]);
 
             switch (true) {
                 case (field && 'object' === typeof field):
@@ -1516,10 +1506,7 @@
             var validators = this.options.fields[field].validators;
 
             // Enable/disable particular validator
-            if (validatorName
-                && validators
-                && validators[validatorName] && validators[validatorName].enabled !== enabled)
-            {
+            if (validatorName && validators && validators[validatorName] && validators[validatorName].enabled !== enabled) {
                 this.options.fields[field].validators[validatorName].enabled = enabled;
                 this.updateStatus(field, this.STATUS_NOT_VALIDATED, validatorName);
             }
@@ -1591,17 +1578,11 @@
                     $field = fields.eq(i);
                     $field
                         // Remove all error messages
-                        .data('bv.messages')
-                            .find('.help-block[data-bv-validator][data-bv-for="' + field + '"]').remove().end()
-                            .end()
-                        .removeData('bv.messages')
+                        .data('bv.messages').find('.help-block[data-bv-validator][data-bv-for="' + field + '"]').remove().end().end().removeData('bv.messages')
                         // Remove feedback classes
-                        .parents(group)
-                            .removeClass('has-feedback has-error has-success')
-                            .end()
+                        .parents(group).removeClass('has-feedback has-error has-success').end()
                         // Turn off events
-                        .off('.bv')
-                        .removeAttr('data-bv-field');
+                        .off('.bv').removeAttr('data-bv-field');
 
                     // Remove feedback icons, tooltip/popover container
                     $icon = $field.parents(group).find('i[data-bv-icon-for="' + field + '"]');
@@ -1624,9 +1605,7 @@
                         if ($field.data('bv.dfs.' + validator)) {
                             $field.data('bv.dfs.' + validator).reject();
                         }
-                        $field.removeData('bv.result.' + validator)
-                              .removeData('bv.response.' + validator)
-                              .removeData('bv.dfs.' + validator);
+                        $field.removeData('bv.result.' + validator).removeData('bv.response.' + validator).removeData('bv.dfs.' + validator);
 
                         // Destroy the validator
                         if ('function' === typeof $.fn.bootstrapValidator.validators[validator].destroy) {
@@ -1639,13 +1618,9 @@
             this.disableSubmitButtons(false);   // Enable submit buttons
             this.$hiddenButton.remove();        // Remove the hidden button
 
-            this.$form
-                .removeClass(this.options.elementClass)
-                .off('.bv')
-                .removeData('bootstrapValidator')
+            this.$form.removeClass(this.options.elementClass).off('.bv').removeData('bootstrapValidator')
                 // Remove generated hidden elements
-                .find('[data-bv-submit-hidden]').remove().end()
-                .find('[type="submit"]').off('click.bv');
+                .find('[data-bv-submit-hidden]').remove().end().find('[type="submit"]').off('click.bv');
         }
     };
 
@@ -1880,9 +1855,7 @@
                     currentYear  = currentDate.getFullYear(),
                     currentMonth = currentDate.getMonth(),
                     currentDay   = currentDate.getDate();
-                return (year < currentYear
-                        || (year === currentYear && month - 1 < currentMonth)
-                        || (year === currentYear && month - 1 === currentMonth && day < currentDay));
+                return (year < currentYear || (year === currentYear && month - 1 < currentMonth) || (year === currentYear && month - 1 === currentMonth && day < currentDay));
             }
 
             return true;
