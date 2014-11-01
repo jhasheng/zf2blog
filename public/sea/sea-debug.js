@@ -688,7 +688,6 @@
 		// Emit `resolve` event for plugins such as text plugin
 		var emitData = { id: id, refUri: refUri };
 		emit("resolve", emitData);
-	
 		return emitData.uri || seajs.resolve(emitData.id, refUri);
 	};
 

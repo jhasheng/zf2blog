@@ -51,4 +51,8 @@ var seaConfig = {
 
 seajs.config(seaConfig);
 
-//seajs.use(seaConfig.required);
+seajs.on('resolve', function(data){
+	if(typeof data.id === "string" && data.id.indexOf('validator:') > -1){
+		data.id = data.id.replace(':','/extends/');
+	}
+});

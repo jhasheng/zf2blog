@@ -124,19 +124,19 @@
             this.$hiddenButton = $('<button/>').attr('type', 'submit').prependTo(this.$form).addClass('bv-hidden-submit').css({ display: 'none', width: 0, height: 0 });
 
             this.$form.on('click.bv', '[type="submit"]', function(e) {
-                    // #746: Check if the button click handler returns false
-                    if (!e.isDefaultPrevented()) {
-                        var $target = $(e.target),
-                            // The button might contain HTML tag
-                            $button = $target.is('[type="submit"]') ? $target.eq(0) : $target.parent('[type="submit"]').eq(0);
+                // #746: Check if the button click handler returns false
+                if (!e.isDefaultPrevented()) {
+                    var $target = $(e.target),
+                        // The button might contain HTML tag
+                        $button = $target.is('[type="submit"]') ? $target.eq(0) : $target.parent('[type="submit"]').eq(0);
 
-                        // Don't perform validation when clicking on the submit button/input
-                        // which aren't defined by the 'submitButtons' option
-                        if (that.options.submitButtons && !$button.is(that.options.submitButtons) && !$button.is(that.$hiddenButton)) {
-                            that.$form.off('submit.bv').submit();
-                        }
+                    // Don't perform validation when clicking on the submit button/input
+                    // which aren't defined by the 'submitButtons' option
+                    if (that.options.submitButtons && !$button.is(that.options.submitButtons) && !$button.is(that.$hiddenButton)) {
+                        that.$form.off('submit.bv').submit();
                     }
-                });
+                }
+            });
 
         	for (var field in this.options.fields) {
                 this._initField(field);
@@ -914,6 +914,7 @@
          * @returns {BootstrapValidator}
          */
         updateMessage: function(field, validator, message) {
+        	console.log(field + ':' + validator + ':' + message);
             var $fields = $([]);
             switch (typeof field) {
                 case 'object':
